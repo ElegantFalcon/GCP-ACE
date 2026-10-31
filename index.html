@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Cloud ACE Exam &amp; Practice Platform (310 Questions)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top Global Navbar -->
+  <header class="app-header">
+    <div class="header-left" id="brand-home" title="Return to Dashboard">
+      <div class="cloud-logo">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="app-title">Google Cloud ACE Exam Platform</h1>
+        <p class="app-subtitle">Associate Cloud Engineer &bull; Complete 310-Question Bank</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="platform-pills">
+        <span class="info-pill"><strong>310</strong> Questions</span>
+        <span class="info-pill"><strong>50–60</strong> Qs / Test</span>
+        <span class="info-pill pass-pill">Pass Mark: <strong>75%</strong></span>
+      </div>
+      <button id="btn-nav-dashboard" class="btn btn-ghost hidden" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Dashboard
+      </button>
+      <button id="btn-theme-toggle" class="btn btn-icon" type="button" title="Toggle Dark/Light Theme">
+        <svg id="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- ==================== VIEW 1: DASHBOARD ==================== -->
+    <section id="dashboard-view" class="view-section">
+      <!-- Top Summary Stats Row -->
+      <div class="stats-overview-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Question Bank</div>
+          <div class="stat-value" id="stat-total-bank">310</div>
+          <div class="stat-meta">6 Structured Sets (50–52 Qs each) + Custom/Random</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Completed Sessions</div>
+          <div class="stat-value" id="stat-completed-count">0</div>
+          <div class="stat-meta"><span id="stat-passed-count">0</span> Passed (&ge;75% required)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Average Score</div>
+          <div class="stat-value" id="stat-avg-score">0%</div>
+          <div class="stat-meta">Best Score: <strong id="stat-best-score">0%</strong></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Saved In-Progress Sessions</div>
+          <div class="stat-value" id="stat-saved-count">0</div>
+          <div class="stat-meta">Resume or restart anytime</div>
+        </div>
+      </div>
+
+      <!-- Exam Configurator Card -->
+      <div class="card configurator-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Start a New Test or Practice Session</h2>
+            <p class="card-desc">Choose between interactive Practice Mode (instant feedback) or timed 2-Hour Test Mode.</p>
+          </div>
+        </div>
+
+        <div class="config-grid">
+          <!-- Step 1: Select Mode -->
+          <div class="config-col">
+            <label class="section-label">1. Choose Exam Mode</label>
+            <div class="mode-selector">
+              <div class="mode-card active" data-mode="practice" id="mode-card-practice">
+                <div class="mode-card-top">
+                  <span class="mode-icon practice-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <div class="mode-name">Practice Mode</div>
+                    <div class="mode-tag">Instant Answer &amp; Explanation</div>
+                  </div>
+                </div>
+                <ul class="mode-features">
+                  <li>Immediate answer reveal &amp; explanation after each question</li>
+                  <li>Live <strong>Correct</strong> &amp; <strong>Incorrect</strong> question counters</li>
+                  <li>No time limit pressure &bull; Full evaluation at the end</li>
+                </ul>
+              </div>
+
+              <div class="mode-card" data-mode="test" id="mode-card-test">
+                <div class="mode-card-top">
+                  <span class="mode-icon test-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <div class="mode-name">Test Mode</div>
+                    <div class="mode-tag">2-Hour Pausable Exam Timer</div>
+                  </div>
+                </div>
+                <ul class="mode-features">
+                  <li><strong>2:00:00 (2-Hour)</strong> countdown timer that can be <strong>paused &amp; resumed</strong></li>
+                  <li>Answers hidden during the exam to simulate real test conditions</li>
+                  <li>Comprehensive Pass/Fail evaluation (<strong>75% pass mark</strong>) upon completion</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Select Question Set (50-60 questions) -->
+          <div class="config-col">
+            <label class="section-label">2. Select Question Set (50–60 Questions per Test)</label>
+            <div class="set-grid" id="set-selector-grid">
+              <button type="button" class="set-btn active" data-set="set1">
+                <span class="set-btn-title">Exam Set 1</span>
+                <span class="set-btn-meta">Questions 1 – 52 (52 Qs)</span>
+              </button>
+              <button type="button" class="set-btn" data-set="set2">
+                <span class="set-btn-title">Exam Set 2</span>
+                <span class="set-btn-meta">Questions 53 – 104 (52 Qs)</span>
+              </button>
+              <button type="button" class="set-btn" data-set="set3">
+                <span class="set-btn-title">Exam Set 3</span>
+                <span class="set-btn-meta">Questions 105 – 156 (52 Qs)</span>
+              </button>
+              <button type="button" class="set-btn" data-set="set4">
+                <span class="set-btn-title">Exam Set 4</span>
+                <span class="set-btn-meta">Questions 157 – 208 (52 Qs)</span>
+              </button>
+              <button type="button" class="set-btn" data-set="set5">
+                <span class="set-btn-title">Exam Set 5</span>
+                <span class="set-btn-meta">Questions 209 – 260 (52 Qs)</span>
+              </button>
+              <button type="button" class="set-btn" data-set="set6">
+                <span class="set-btn-title">Exam Set 6</span>
+                <span class="set-btn-meta">Questions 261 – 310 (50 Qs)</span>
+              </button>
+              <button type="button" class="set-btn" data-set="random">
+                <span class="set-btn-title">Random 50–60 Exam</span>
+                <span class="set-btn-meta">Randomized from all 310 Qs</span>
+              </button>
+              <button type="button" class="set-btn" data-set="custom">
+                <span class="set-btn-title">Custom / Full Bank</span>
+                <span class="set-btn-meta">Custom range or all 310 Qs</span>
+              </button>
+            </div>
+
+            <!-- Random Count Sub-panel -->
+            <div id="random-config-panel" class="sub-config-panel hidden">
+              <label for="random-count-input">Number of Random Questions (50–60 recommended):</label>
+              <div class="inline-inputs">
+                <input type="number" id="random-count-input" min="5" max="310" value="55" class="form-input" />
+                <span class="input-hint">Default: 55 questions (2-hour exam standard)</span>
+              </div>
+            </div>
+
+            <!-- Custom Range Sub-panel -->
+            <div id="custom-config-panel" class="sub-config-panel hidden">
+              <label>Custom Question Range (1 to 310):</label>
+              <div class="inline-inputs">
+                <div>
+                  <span class="small-label">From Q#</span>
+                  <input type="number" id="custom-start-input" min="1" max="310" value="1" class="form-input" />
+                </div>
+                <div>
+                  <span class="small-label">To Q#</span>
+                  <input type="number" id="custom-end-input" min="1" max="310" value="60" class="form-input" />
+                </div>
+                <button type="button" id="btn-select-all-310" class="btn btn-secondary btn-sm">Select All 310</button>
+              </div>
+            </div>
+
+            <!-- Additional Options -->
+            <div class="options-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="chk-shuffle-questions" />
+                <span>Shuffle question order</span>
+              </label>
+            </div>
+
+            <div class="start-action-row">
+              <button type="button" id="btn-start-session" class="btn btn-primary btn-lg">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+                <span id="start-btn-text">Start Practice Session (52 Questions)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved / Paused Sessions Card -->
+      <div class="card" id="saved-sessions-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Saved &amp; Paused Sessions</h2>
+            <p class="card-desc">Resume an in-progress session right where you left off, or restart it from the beginning.</p>
+          </div>
+          <button type="button" id="btn-clear-sessions" class="btn btn-ghost btn-sm">Clear All Saved</button>
+        </div>
+        <div id="saved-sessions-list" class="sessions-list"></div>
+      </div>
+
+      <!-- Past Scores & Evaluation History Card -->
+      <div class="card" id="history-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Saved Scores &amp; Evaluation History</h2>
+            <p class="card-desc">All completed Test and Practice evaluations are automatically saved. Pass threshold is <strong>75%</strong>.</p>
+          </div>
+          <button type="button" id="btn-clear-history" class="btn btn-ghost btn-sm">Clear History</button>
+        </div>
+        <div id="history-list-container"></div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: ACTIVE EXAM / PRACTICE ==================== -->
+    <section id="exam-view" class="view-section hidden">
+      <!-- Sticky Session Control Bar -->
+      <div class="exam-topbar card">
+        <div class="exam-topbar-left">
+          <span id="active-mode-badge" class="mode-badge practice">PRACTICE MODE</span>
+          <div class="active-set-info">
+            <h3 id="active-set-title">Exam Set 1 (Q1–52)</h3>
+            <div class="progress-mini-wrap">
+              <div class="progress-mini-bar">
+                <div id="active-progress-fill" class="progress-mini-fill" style="width: 0%"></div>
+              </div>
+              <span id="active-progress-text" class="progress-mini-text">0 / 52 Answered</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Counters (Correct / Incorrect in Practice Mode, Answered / Flagged in Test Mode) -->
+        <div class="exam-topbar-center">
+          <div id="practice-live-counters" class="live-counters">
+            <div class="counter-pill correct-counter" title="Questions answered correctly">
+              <span class="dot"></span>
+              <span>Correct: <strong id="live-correct-count">0</strong></span>
+            </div>
+            <div class="counter-pill incorrect-counter" title="Questions answered incorrectly">
+              <span class="dot"></span>
+              <span>Incorrect: <strong id="live-incorrect-count">0</strong></span>
+            </div>
+            <div class="counter-pill remaining-counter" title="Questions not yet checked">
+              <span>Remaining: <strong id="live-remaining-count">52</strong></span>
+            </div>
+          </div>
+
+          <div id="test-live-counters" class="live-counters hidden">
+            <div class="counter-pill answered-counter">
+              <span>Answered: <strong id="live-test-answered">0</strong></span>
+            </div>
+            <div class="counter-pill flagged-counter">
+              <span>Flagged: <strong id="live-test-flagged">0</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timer & Session Actions -->
+        <div class="exam-topbar-right">
+          <div class="timer-box" id="timer-box">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <div class="timer-readout">
+              <span class="timer-label" id="timer-label">TIME LEFT</span>
+              <span class="timer-digits" id="timer-display">02:00:00</span>
+            </div>
+            <button type="button" id="btn-pause-timer" class="btn btn-secondary btn-xs" title="Pause / Resume Timer">
+              Pause
+            </button>
+          </div>
+
+          <div class="session-actions">
+            <button type="button" id="btn-restart-active" class="btn btn-secondary btn-sm" title="Restart this test from Question 1">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"/>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+              </svg>
+              Restart
+            </button>
+            <button type="button" id="btn-save-exit" class="btn btn-secondary btn-sm" title="Save session progress and exit to Dashboard">
+              Save &amp; Exit
+            </button>
+            <button type="button" id="btn-finish-session" class="btn btn-primary btn-sm">
+              Finish &amp; Evaluate
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pause Overlay Modal (Shown when Test Mode timer is paused) -->
+      <div id="pause-overlay" class="modal-overlay hidden">
+        <div class="modal-card">
+          <div class="pause-icon-ring">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="6" y="4" width="4" height="16"/>
+              <rect x="14" y="4" width="4" height="16"/>
+            </svg>
+          </div>
+          <h2>Exam Timer Paused</h2>
+          <p>Your 2-hour test timer is currently paused. Question content is hidden while paused.</p>
+          <div class="pause-stats-box">
+            <div>
+              <span class="small-label">Time Remaining</span>
+              <strong id="pause-time-remaining">02:00:00</strong>
+            </div>
+            <div>
+              <span class="small-label">Progress</span>
+              <strong id="pause-progress-text">0 / 52</strong>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="button" id="btn-resume-from-modal" class="btn btn-primary btn-lg">
+              Resume Test
+            </button>
+            <button type="button" id="btn-restart-from-modal" class="btn btn-secondary">
+              Restart Test
+            </button>
+            <button type="button" id="btn-save-from-modal" class="btn btn-ghost">
+              Save &amp; Exit to Dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Exam Workspace Grid -->
+      <div class="exam-workspace">
+        <!-- Left/Main Column: Question Card -->
+        <div class="question-column">
+          <div class="card question-card">
+            <div class="question-card-header">
+              <div class="q-badges">
+                <span class="q-index-badge" id="q-index-badge">Question 1 of 52</span>
+                <span class="q-bank-id-badge" id="q-bank-id-badge">Bank #1</span>
+                <span class="q-type-badge" id="q-type-badge">Single Choice</span>
+              </div>
+              <button type="button" id="btn-flag-question" class="btn btn-flag" title="Flag question for review">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                  <line x1="4" y1="22" x2="4" y2="15"/>
+                </svg>
+                <span id="flag-btn-text">Flag for Review</span>
+              </button>
+            </div>
+
+            <!-- Question Stem -->
+            <div class="question-stem" id="question-stem"></div>
+
+            <!-- Code / Diagram Block (for Q23, Q42, Q53, Q72, Q94, Q98) -->
+            <pre id="question-code-block" class="question-code-block hidden"></pre>
+
+            <!-- Options List -->
+            <div id="options-container" class="options-container"></div>
+
+            <!-- Practice Mode Instant Feedback & Explanation Panel -->
+            <div id="practice-feedback-panel" class="feedback-panel hidden">
+              <div id="feedback-banner" class="feedback-banner">
+                <div class="feedback-status-left">
+                  <span id="feedback-status-icon" class="feedback-icon"></span>
+                  <div>
+                    <div id="feedback-status-title" class="feedback-title">Correct!</div>
+                    <div id="feedback-status-subtitle" class="feedback-subtitle">Correct Answer: C</div>
+                  </div>
+                </div>
+              </div>
+              <div class="explanation-box">
+                <h4>Explanation &amp; Reference Links</h4>
+                <div id="feedback-explanation-text" class="explanation-content"></div>
+              </div>
+            </div>
+
+            <!-- Bottom Question Navigation Bar -->
+            <div class="question-footer-nav">
+              <button type="button" id="btn-prev-question" class="btn btn-secondary">
+                &larr; Previous
+              </button>
+
+              <div class="footer-center-actions">
+                <button type="button" id="btn-clear-answer" class="btn btn-ghost btn-sm">
+                  Clear Selection
+                </button>
+                <button type="button" id="btn-check-answer" class="btn btn-accent btn-sm hidden">
+                  Show / Check Answer
+                </button>
+              </div>
+
+              <button type="button" id="btn-next-question" class="btn btn-primary">
+                Next &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Question Navigator Palette -->
+        <aside class="navigator-column">
+          <div class="card navigator-card">
+            <div class="navigator-header">
+              <h4>Question Navigator</h4>
+              <span id="nav-summary-pill" class="nav-summary-pill">1 / 52</span>
+            </div>
+
+            <!-- Navigator Filter Tabs -->
+            <div class="nav-filter-tabs" id="nav-filter-tabs">
+              <button type="button" class="nav-tab active" data-filter="all">All</button>
+              <button type="button" class="nav-tab" data-filter="unanswered">Unanswered</button>
+              <button type="button" class="nav-tab" data-filter="flagged">Flagged</button>
+              <button type="button" class="nav-tab practice-only-tab" data-filter="correct">Correct</button>
+              <button type="button" class="nav-tab practice-only-tab" data-filter="incorrect">Incorrect</button>
+            </div>
+
+            <!-- Numbered Grid -->
+            <div id="question-palette-grid" class="palette-grid"></div>
+
+            <!-- Legend -->
+            <div class="palette-legend" id="palette-legend">
+              <div class="legend-item"><span class="swatch current"></span> Current</div>
+              <div class="legend-item practice-legend"><span class="swatch correct"></span> Correct</div>
+              <div class="legend-item practice-legend"><span class="swatch incorrect"></span> Incorrect</div>
+              <div class="legend-item test-legend hidden"><span class="swatch answered"></span> Answered</div>
+              <div class="legend-item"><span class="swatch flagged"></span> Flagged</div>
+              <div class="legend-item"><span class="swatch unanswered"></span> Unanswered</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: COMPREHENSIVE EVALUATION ==================== -->
+    <section id="evaluation-view" class="view-section hidden">
+      <div class="card evaluation-hero-card">
+        <div class="eval-hero-grid">
+          <!-- Score Ring Gauge -->
+          <div class="score-ring-container">
+            <svg class="score-ring-svg" viewBox="0 0 160 160">
+              <circle class="score-ring-bg" cx="80" cy="80" r="68" />
+              <circle id="eval-score-ring-circle" class="score-ring-progress" cx="80" cy="80" r="68" stroke-dasharray="427.26" stroke-dashoffset="427.26" />
+            </svg>
+            <div class="score-ring-center">
+              <div id="eval-percentage-text" class="score-ring-percent">0%</div>
+              <div class="score-ring-sub">Pass: 75%</div>
+            </div>
+          </div>
+
+          <!-- Evaluation Details -->
+          <div class="eval-summary-info">
+            <div class="eval-badges-row">
+              <span id="eval-pass-badge" class="pass-status-badge passed">PASSED (&ge;75%)</span>
+              <span id="eval-mode-badge" class="mode-badge practice">PRACTICE MODE</span>
+              <span id="eval-date-text" class="eval-date-text"></span>
+            </div>
+            <h2 id="eval-title">Exam Set 1 — Comprehensive Evaluation</h2>
+            <p id="eval-verdict-message" class="eval-verdict-msg"></p>
+
+            <!-- Breakdown KPI Grid -->
+            <div class="eval-kpi-grid">
+              <div class="eval-kpi-box">
+                <span class="kpi-label">Total Score</span>
+                <strong id="eval-kpi-score" class="kpi-val">0 / 52</strong>
+              </div>
+              <div class="eval-kpi-box correct">
+                <span class="kpi-label">Correct Answers</span>
+                <strong id="eval-kpi-correct" class="kpi-val">0</strong>
+              </div>
+              <div class="eval-kpi-box incorrect">
+                <span class="kpi-label">Incorrect Answers</span>
+                <strong id="eval-kpi-incorrect" class="kpi-val">0</strong>
+              </div>
+              <div class="eval-kpi-box unanswered">
+                <span class="kpi-label">Unanswered</span>
+                <strong id="eval-kpi-unanswered" class="kpi-val">0</strong>
+              </div>
+              <div class="eval-kpi-box">
+                <span class="kpi-label">Time Spent</span>
+                <strong id="eval-kpi-time" class="kpi-val">00:00:00</strong>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="eval-actions-row">
+              <button type="button" id="btn-eval-restart" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="1 4 1 10 7 10"/>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                </svg>
+                Restart This Test
+              </button>
+              <button type="button" id="btn-eval-retry-wrong" class="btn btn-secondary">
+                Practice Incorrect &amp; Unanswered
+              </button>
+              <button type="button" id="btn-eval-dashboard" class="btn btn-ghost">
+                Back to Dashboard
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Question-by-Question Review -->
+      <div class="card review-section-card">
+        <div class="review-header-bar">
+          <div>
+            <h3 class="card-title">Detailed Question-by-Question Review</h3>
+            <p class="card-desc">Inspect your selected answers alongside the official correct answer and full explanation.</p>
+          </div>
+          <div class="review-controls">
+            <div class="review-filter-pills" id="review-filter-pills">
+              <button type="button" class="filter-pill active" data-rfilter="all" id="rfilter-all">All (0)</button>
+              <button type="button" class="filter-pill" data-rfilter="incorrect" id="rfilter-incorrect">Incorrect (0)</button>
+              <button type="button" class="filter-pill" data-rfilter="correct" id="rfilter-correct">Correct (0)</button>
+              <button type="button" class="filter-pill" data-rfilter="unanswered" id="rfilter-unanswered">Unanswered (0)</button>
+            </div>
+            <input type="search" id="review-search-input" class="form-input review-search" placeholder="Search questions or topics..." />
+          </div>
+        </div>
+
+        <div id="review-questions-list" class="review-questions-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Confirmation Modal for Restart / Submit -->
+  <div id="confirm-modal" class="modal-overlay hidden">
+    <div class="modal-card confirm-modal-card">
+      <h3 id="confirm-modal-title">Confirm Action</h3>
+      <p id="confirm-modal-message">Are you sure?</p>
+      <div class="modal-actions">
+        <button type="button" id="btn-confirm-cancel" class="btn btn-ghost">Cancel</button>
+        <button type="button" id="btn-confirm-ok" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
